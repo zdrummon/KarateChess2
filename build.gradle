@@ -2,5 +2,20 @@ apply plugin: "java"
 apply plugin: "eclipse"
 
 sourceSets {
-	main.java.srcDir "src/main"
+	
+	main {
+		java {
+			srcDirs = ['src/main']
+		}
+	}
+	
+	test {
+		java {
+			srcDirs = ['src/test']
+		}
+	}
+}
+
+jar {
+	manifest.attributes "Main-Class": "com.daikonenvironments.zdrummon.karatechess.Main"
 }
