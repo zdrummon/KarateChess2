@@ -1,5 +1,24 @@
+repositories {
+//	maven {url 'https://jitpack.io'}
+	mavenCentral()
+}
+
 apply plugin: "java"
 apply plugin: "eclipse"
+
+configurations {
+	myConfig 
+}
+
+dependencies {
+//	compile "com.github.zdrummon:karatechess2:master-SNAPSHOT"
+	compile "org.apache.commons:commons-lang3:3.3.2"
+	myConfig "org.apache.commons:commons-lang3:3.3.2"
+}
+
+artifacts {
+	myConfig jar
+}
 
 sourceSets {
 	
@@ -17,5 +36,6 @@ sourceSets {
 }
 
 jar {
+	from configurations.myConfig.collect {zipTree it}
 	manifest.attributes "Main-Class": "com.daikonenvironments.zdrummon.karatechess.Main"
 }
